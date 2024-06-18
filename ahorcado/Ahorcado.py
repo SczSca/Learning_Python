@@ -8,15 +8,29 @@ class Ahorcado:
     espacio_adivinar = []
     letras_usadas = []
 
+    '''
+        Constructor que inicializa el ahorcado con una lista de palabras
+        :param palabras: Lista de str. Palabras para adivinar
+
+    '''
+
     def __init__(self, palabras):
         self.banco_palabras = palabras
 
+    '''
+        Selecciona una palabra aleatoria y muestra el ahorcado con espacios en blanco
+    '''
     def elegir_palabra(self):
         self.palabra_adivinar = choice(self.banco_palabras)
         self.indice_palabra = self.banco_palabras.index(self.palabra_adivinar)
         for i in range(len(self.palabra_adivinar)):
             self.espacio_adivinar.append('_')
 
+
+    '''
+        Comprueba si la letra se encuentra en la palabra y muestra el estado del ahorcado actual
+        :param letra: str. Letra a intentar adivinar
+    '''
     def adivinar_letra(self, letra):
         mensaje = f"Le quedan {self.intentos} intentos. Así quedó la palabra: "
 
@@ -48,9 +62,18 @@ class Ahorcado:
 
         return 1
 
+
+    '''
+        Comprueba si se ha ganado el juego
+        :return: bool
+    '''
     def coincidir_palabra(self):
         return "".join(self.espacio_adivinar) == self.palabra_adivinar
     
+
+    '''
+        Inicia el juego del ahorcado
+    '''
     def iniciar_juego(self):
         self.intentos = 6
         self.elegir_palabra()
