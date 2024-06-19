@@ -6,7 +6,6 @@ class Ahorcado:
     #intentos para adivinar letras
     intentos = 6
     palabra_adivinar = ""
-    indice_palabra = -1
     espacio_adivinar = []
     letras_usadas = []
 
@@ -19,12 +18,12 @@ class Ahorcado:
     def __init__(self, palabras):
         self.banco_palabras = palabras
 
+
     '''
         Selecciona una palabra aleatoria y muestra el ahorcado con espacios en blanco
     '''
     def elegir_palabra(self):
         self.palabra_adivinar = choice(self.banco_palabras)
-        self.indice_palabra = self.banco_palabras.index(self.palabra_adivinar)
         for i in range(len(self.palabra_adivinar)):
             self.espacio_adivinar.append('_')
 
@@ -85,9 +84,6 @@ class Ahorcado:
         else:
             print("Sistema operativo no compatible")
 
-
-
-
     '''
         Inicia el juego del ahorcado
     '''
@@ -109,7 +105,7 @@ class Ahorcado:
         if self.coincidir_palabra():
             mensaje = f"¡Felicidades! ¡Usted logró adivinar la palabra {''.join(self.espacio_adivinar)}! ¡Le quedaron {self.intentos} intentos!"
         else:
-            mensaje = f"Una lastima, se le acabaron los intentos. La palabra era {self.banco_palabras[self.indice_palabra]}"
+            mensaje = f"Una lastima, se le acabaron los intentos. La palabra era {self.palabra_adivinar}."
         
         print(mensaje)
 
