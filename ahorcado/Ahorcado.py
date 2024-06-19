@@ -1,4 +1,6 @@
 from random import choice
+from os import system
+from os import name
 class Ahorcado:
     
     #intentos para adivinar letras
@@ -58,6 +60,7 @@ class Ahorcado:
             self.intentos -= 1
             mensaje = f"No se encontró la letra . Le quedan {self.intentos} intentos."
         
+        self.limpiar_terminal()
         print(mensaje)
 
         return 1
@@ -72,6 +75,20 @@ class Ahorcado:
     
 
     '''
+        Limpia la terminal según el sistema operativo actual
+    '''
+    def limpiar_terminal(self):
+        if name == 'nt':  # Windows
+            system('cls')
+        elif name == 'posix':  # Linux o macOS
+            system('clear')
+        else:
+            print("Sistema operativo no compatible")
+
+
+
+
+    '''
         Inicia el juego del ahorcado
     '''
     def iniciar_juego(self):
@@ -82,10 +99,12 @@ class Ahorcado:
         print("Bienvenido al juego del ahorcado. Usted tiene 6 intentos")
 
         while self.intentos > 0:
+            
             letra = input(f"Introduzca una letra para adivinar la palabra: {''.join(self.espacio_adivinar)} . Las letras ya utilizadas son: {self.letras_usadas} ")
             self.adivinar_letra(letra)
             if self.coincidir_palabra():
                 break
+            
 
         if self.coincidir_palabra():
             mensaje = f"¡Felicidades! ¡Usted logró adivinar la palabra {''.join(self.espacio_adivinar)}! ¡Le quedaron {self.intentos} intentos!"
